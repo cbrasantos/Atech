@@ -17,7 +17,8 @@ As configurações de banco podem ser feitas no application.yml
 
 # Diagrama Ilustrado de uma arquitetura SaaS aplicados as seguintes clouds (AWS, Azure e GCP)
 
-Os diagramas citados abaixo consideram as melhores praticas DevOps e os seguintes aspectos :
+Os diagramas citados abaixo consideram as melhores praticas DevOps e os seguintes aspectos:
+
 	-Segurança
 	-Disponibilidade
 	-Estabilidade
