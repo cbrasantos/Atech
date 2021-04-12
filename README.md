@@ -13,7 +13,7 @@ Para acessar as api, podera utilizar o swagger em http://<host>:8089/empresa-aer
 
 # DataSource
 
-As configuração de banco podem-ser feita no application.yml
+As configurações de banco podem ser feitas no application.yml
 
 # Diagrama Ilustrado de uma arquitetura SaaS aplicados as seguintes clouds (AWS, Azure e GCP)
 
