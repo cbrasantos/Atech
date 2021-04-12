@@ -1,0 +1,47 @@
+version: "3.5"
+
+services:
+  empresa-aerea:
+    image:
+    stop_grace_period: 10s
+    ports:
+       - "8089:8089"
+    healthcheck:
+      test: curl --fail -s http://127.0.0.1:8089/empresa-aerea/actuator/health || exit 1
+      interval: 15s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+    networks:
+       - traefik
+       - empresa-aerea
+    deploy:
+      mode: replicated
+      replicas: 1
+      update_config:
+        parallelism: 1
+        delay: 15s
+        failure_action: rollback
+        monitor: 1m
+        order: start-first
+      restart_policy:
+        condition: any
+        delay: 10s
+        max_attempts: 3
+        window: 10s
+      placement:
+        constraints:
+          - node.role == worker
+      labels:
+        - "traefik.backend.loadbalancer.swarm=true"
+        - "traefik.enable=true"
+        - "traefik.frontend.rule=Host:empresa-aerea"
+        - "traefik.docker.network=traefik"
+        - "traefik.port=8089"
+      
+networks:
+  empresa-aerea:
+    external: no
+    driver: overlay
+  traefik:
+    external: yes

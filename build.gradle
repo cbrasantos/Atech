@@ -1,0 +1,68 @@
+buildscript {
+	ext {
+		springBootVersion = '2.1.1.RELEASE'
+	}
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+group = 'br.com.atech'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 1.8
+
+repositories {
+	mavenCentral()
+}
+
+jar {
+	baseName = 'empresa-aerea'
+}
+
+ext {
+	swaggerVersion = '2.9.2'
+	okhttpVersion = '3.6.0'
+	logbackVersion = '1.1.6'
+	slf4jApiVersion = '1.7.15'
+	logStashLogbackEncoderVersion = '4.7'
+	per4jVersion = '0.9.16'
+	oauthVersion = '2.0.8.RELEASE'
+}
+
+
+dependencies {
+	implementation('org.springframework.boot:spring-boot-starter-actuator')
+	implementation('org.springframework.boot:spring-boot-starter-aop')
+	implementation('org.springframework.boot:spring-boot-starter-data-jpa')
+	implementation('org.springframework.boot:spring-boot-starter-web')
+	runtimeOnly('org.springframework.boot:spring-boot-devtools')
+	testImplementation('org.springframework.boot:spring-boot-starter-test')
+	compileOnly 'org.projectlombok:lombok:1.18.2'
+	compile("joda-time:joda-time")
+
+	compile("io.springfox:springfox-swagger2:${swaggerVersion}")
+	compile("io.springfox:springfox-swagger-ui:${swaggerVersion}")
+
+	implementation('org.springframework.boot:spring-boot-starter-web-services')
+	compile group: 'javax.xml.ws', name: 'jaxws-api', version: '2.3.0'
+	compile group: 'javax.xml.bind', name: 'jaxb-api', version: '2.3.0'
+	//compile group: 'javax.activation', name: 'activation', version: '1.1.1'
+	compile group: 'com.sun.xml.bind', name: 'jaxb-impl', version: '2.3.0.1'
+	compile group: 'com.sun.xml.bind', name: 'jaxb-core', version: '2.3.0.1'
+
+	compile group: 'org.apache.cxf', name: 'cxf-spring-boot-starter-jaxws', version: '3.2.4'
+	compile 'org.apache.cxf:cxf-rt-features-logging:3.2.4'
+	compile("org.perf4j:perf4j:$per4jVersion")
+	compile("io.springfox:springfox-data-rest:${swaggerVersion}")
+
+	runtime('org.postgresql:postgresql')
+
+}

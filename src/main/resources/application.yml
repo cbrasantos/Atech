@@ -1,0 +1,47 @@
+#Application
+server:
+  servlet:
+    contextPath: /empresa-area
+  port: 8089
+
+endpoints:
+  health:
+    enabled: true
+  metrics:
+    enabled: true
+
+application:
+  version: 0.1
+  title: EMPRESA-AEREA
+
+#LOG
+logging:
+  level:
+    org:
+      springframework:
+        web: INFO
+      apache:
+        http: INFO
+    br:
+      com:
+        atech:
+          empresaarea: INFO
+
+#DataBase
+spring:
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:#{'jdbc:postgresql://localhost:1521/aerea'}}
+    username: ${SPRING_DATASOURCE_USERNAME:admin}
+    password: ${SPRING_DATASOURCE_PASSWORD:masterkey}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
+
+
+management:
+  context-path: /management
+  port: 9090
+
+
+
